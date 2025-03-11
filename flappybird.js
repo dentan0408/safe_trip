@@ -109,7 +109,7 @@ function update() {
         context.shadowColor = "blue";
         context.shadowBlur = 1;
         context.font = "bold 20px sans-serif";
-        context.fillText("A wizard is never late…", osaka.x, osaka.y + 210);
+        context.fillText("A wizard is never late…", osaka.x, osaka.y + 200);
         context.fillText("but your flight might be!", osaka.x, osaka.y + 230);
     }
 
