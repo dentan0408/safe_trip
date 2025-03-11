@@ -49,10 +49,6 @@ let score = 0;
 const maxScore = 3; // Score needed to trigger Osaka
 let pipeCount = 0; // Track number of pipes
 
-// Preload GIF & Victory Sound
-let congratsGif = new Image();
-congratsGif.src = "./congrats.gif";
-
 let victorySound = new Audio("./victory.mp3");
 
 // Detect user interaction (fixes sound autoplay issue on mobile)
@@ -108,30 +104,21 @@ function update() {
     // 🇯🇵 Move Osaka when it appears
     if (osaka.active) {
         osaka.x += velocityX; // Move left
-        context.drawImage(osaka.img, osaka.x, osaka.y + 290, 100, 100);
+        context.drawImage(osaka.img, osaka.x, osaka.y + 240, 150, 150);
         context.fillStyle = "white";
         context.shadowColor = "blue";
         context.shadowBlur = 1;
         context.font = "bold 20px sans-serif";
-        context.fillText("ようこそ!🇯🇵", osaka.x, osaka.y + 270);
+        context.fillText("A wizard is never late…", osaka.x, osaka.y + 190);
+        context.fillText("but your flight might be!", osaka.x, osaka.y + 200);
     }
 
     // 🏆 Stop the game & show Congrats GIF when bird reaches Osaka
     if (bird.x >= osaka.x) {
         gameOver = true;
-        document.getElementById("board").style.display = "none"; // Hide the game canvas
+        window.location.href = "https://www.youtube.com/watch?v=dDKVKG3ESsk&t=131s";
 
-        // 🎉 Create and show the GIF in the document body
-        let gifElement = document.createElement("img");
-        gifElement.src = "./congrats.gif";
-        gifElement.style.position = "absolute";
-        gifElement.style.left = "50%";
-        gifElement.style.top = "50%";
-        gifElement.style.transform = "translate(-50%, -50%)";
-        gifElement.style.width = "80vw"; // Scales well on mobile
-        gifElement.style.maxWidth = "360px"; // Prevents it from getting too large
-        gifElement.style.height = "auto";
-        document.body.appendChild(gifElement);
+        return;
 
         // Play victory sound if user interacted (fixes autoplay issue on mobile)
         if (userInteracted) {
